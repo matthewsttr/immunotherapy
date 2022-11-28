@@ -72,13 +72,13 @@ runningsolution=vertcat(runningsolution,[temptime,tempsolution]);
  
 % disp(runningsolution)
 
-figure()
-plot(runningsolution(:,1),log(runningsolution(:,4)),'-o',runningsolution(:,1),log(runningsolution(:,5)),'-.')
-title('M(t) and D(t) via ODE45 - Cancer concentration')
-xlabel('Time t (hours)')
-ylabel('Concentration')
-legend('Cancer Concentration','Dendritic Cell Concentration')
-xlim([0,horizon])
-ylim([-30,30])
+% figure()
+% plot(runningsolution(:,1),log(runningsolution(:,4)),'-o',runningsolution(:,1),log(runningsolution(:,5)),'-.')
+% title('M(t) and D(t) via ODE45 - Cancer concentration')
+% xlabel('Time t (hours)')
+% ylabel('Concentration')
+% legend('Cancer Concentration','Dendritic Cell Concentration')
+% xlim([0,horizon])
+% ylim([-30,30])
 
 end %function

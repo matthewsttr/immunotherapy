@@ -1,8 +1,3 @@
-% therapy(horizon,initCond) takes as inputs a horizon time t (measured in hours) and a 5-vector of floats initCond (measured in concentation units)
-% to simulate a model of dendritic cell transfection cancer immuotherapy proposed by Castiglione and Piccoli (2006) 
-% https://doi.org/10.1007/s11538-005-9014-3
-% it creates plots of the resulting solution for the given horizon and initial conditions
-
 function [outputArg1] = therapy(horizon,initCond)
 %THERAPY Summary of this function goes here
 %   Detailed explanation goes here

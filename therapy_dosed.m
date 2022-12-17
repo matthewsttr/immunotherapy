@@ -1,4 +1,4 @@
-function [cancerConc] = therapy_dosed(horizon, initCond, schedule)
+function [equationsolution] = therapy_dosed(horizon, initCond, schedule)
 % horizon   -    float:      represents final time to simulate to
 % initCond  -    1x5 float:  initial parameters for system
 % schedule  -    Nx2 float:  matrix of dosetime i and dendritic cell
@@ -48,37 +48,40 @@ runningsolution = zeros(6);
 
 for currentDose = 1:numDoses
     if currentDose==1
-        tspan = [0 schedule(currentDose,1)]
+        tspan = [0 schedule(currentDose,1)];
         [temptime,tempsolution]=ode45(f,tspan,launchConditions);
         runningsolution=vertcat(runningsolution,[temptime,tempsolution]);
         [endtimeindex,~] = size(runningsolution);
         launchConditions = runningsolution(endtimeindex,2:6);
         launchConditions(4) = launchConditions(4) + schedule(currentDose,2);
-        disp(launchConditions)
+%         disp(launchConditions)
     else 
-        tspan=[schedule(currentDose-1,1) schedule(currentDose,1)]
+        tspan=[schedule(currentDose-1,1) schedule(currentDose,1)];
         [temptime,tempsolution]=ode45(f,tspan,launchConditions);
         runningsolution=vertcat(runningsolution,[temptime,tempsolution]);
         [endtimeindex,~] = size(runningsolution);
         launchConditions = runningsolution(endtimeindex,2:6); 
         launchConditions(4) = launchConditions(4) + schedule(currentDose,2);
-        disp(launchConditions)
+%         disp(launchConditions)
     end
 end
 
-tspan=[schedule(numDoses,1), horizon]
+tspan=[schedule(numDoses,1), horizon];
 [temptime,tempsolution]=ode45(f,tspan,launchConditions);
 runningsolution=vertcat(runningsolution,[temptime,tempsolution]);
+
  
 % disp(runningsolution)
 
 % figure()
 % plot(runningsolution(:,1),log(runningsolution(:,4)),'-o',runningsolution(:,1),log(runningsolution(:,5)),'-.')
-% title('M(t) and D(t) via ODE45 - Cancer concentration')
+% title('M(t) and D(t) via ODE45')
 % xlabel('Time t (hours)')
 % ylabel('Concentration')
 % legend('Cancer Concentration','Dendritic Cell Concentration')
 % xlim([0,horizon])
 % ylim([-30,30])
+
+equationsolution=runningsolution;
 
 end %function

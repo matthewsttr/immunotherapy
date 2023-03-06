@@ -15,7 +15,7 @@ function [objective,cancercost,combatantcost] = cost_to_go(sol)
 % dendritic_solution = interp1(sol(:,1),sol(:,5),interpolationgrid,"spline");
 % food_solution = interp1(sol(:,1),sol(:,6),interpolationgrid,"spline");
 
-
+%test
 
 combatant_square_sum = trapz(sol(:,1),sol(:,3).^2);
 cancer_square_sum = trapz(sol(:,1),sol(:,4).^2);
